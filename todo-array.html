@@ -1,0 +1,71 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ToDo List — Plain JS with Array (Task 2)</title>
+  <style>
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; max-width: 720px; margin: 40px auto; padding: 0 16px; }
+    header { display: flex; gap: 8px; }
+    input[type=text] { flex: 1; padding: 8px; }
+    button { padding: 8px 12px; cursor: pointer; }
+    ul { padding-left: 20px; }
+    li { padding: 6px 0; }
+  </style>
+</head>
+<body>
+  <h1>ToDo List — Plain JS with Array (Task 2)</h1>
+  <p>Items are stored in a JavaScript array and rendered from it.</p>
+
+  <header>
+    <input id="new-task" type="text" placeholder="New task..." />
+    <button id="add-btn">Add task</button>
+    <!-- <button id="clear-btn" disabled>Clear all</button> -->
+  </header>
+
+  <ul id="todo-list"></ul>
+
+  <script>
+    const input = document.getElementById('new-task');
+    const button = document.getElementById('add-btn');
+    const list = document.getElementById('todo-list');
+    // const clearBtn = document.getElementById('clear-btn');
+
+    const tasks = ["Task 1", "Task 2", "Task 3"];
+
+      function render() {
+      list.innerHTML = "";
+      for (const t of tasks) {
+        const li = document.createElement('li');
+        li.textContent = t;
+        list.appendChild(li);
+      }
+      // clearBtn.disabled = tasks.length === 0;   // NEW
+    }
+
+    button.addEventListener('click', () => {
+      const text = input.value.trim();
+      if (!text) return;
+      tasks.push(text);
+      input.value = "";
+      input.focus();
+      render();
+    });
+
+    // clearBtn.addEventListener('click', () => {
+    //   if (!tasks.length) return;
+    //   if (!confirm('Remove all tasks?')) return; // optional safety
+    //   tasks.length = 0;       // or: tasks.splice(0, tasks.length)
+    //   render();
+    //   input.focus();
+    // });
+
+    input.addEventListener('keyup', (e) => {
+      if (e.key === 'Enter') button.click();
+    });
+
+    render();
+  </script>
+</body>
+</html>

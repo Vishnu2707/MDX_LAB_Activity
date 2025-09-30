@@ -1,0 +1,49 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ToDo List — Vue.js</title>
+  <style>
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; max-width: 720px; margin: 40px auto; padding: 0 16px; }
+    header { display: flex; gap: 8px; }
+    input[type=text] { flex: 1; padding: 8px; }
+    button { padding: 8px 12px; cursor: pointer; }
+    ul { padding-left: 20px; }
+    li { padding: 6px 0; }
+  </style>
+</head>
+<body>
+  <h1>ToDo List — Vue.js</h1>
+  <div id="app">
+    <header>
+      <input v-model.trim="newTask" type="text" placeholder="New task..." @keyup.enter="addTask" />
+      <button @click="addTask">Add task</button>
+    </header>
+
+    <ul>
+      <li v-for="(t, i) in tasks" :key="i">{{ t }}</li>
+    </ul>
+  </div>
+
+  <!-- Use the recommended Vue 2.7.8 UMD build -->
+  <script src="https://unpkg.com/vue@2.7.8/dist/vue.js"></script>
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        newTask: '',
+        tasks: ['Task 1', 'Task 2', 'Task 3']
+      },
+      methods: {
+        addTask() {
+          if (!this.newTask) return;
+          this.tasks.push(this.newTask);
+          this.newTask = '';
+        }
+      }
+    });
+  </script>
+</body>
+</html>

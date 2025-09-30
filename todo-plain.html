@@ -1,0 +1,51 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ToDo List — Plain JS (Task 1)</title>
+  <style>
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; max-width: 720px; margin: 40px auto; padding: 0 16px; }
+    header { display: flex; gap: 8px; }
+    input[type=text] { flex: 1; padding: 8px; }
+    button { padding: 8px 12px; cursor: pointer; }
+    ul { padding-left: 20px; }
+    li { padding: 6px 0; }
+  </style>
+</head>
+<body>
+  <h1>ToDo List — Plain JS (Task 1)</h1>
+  <p>Initial items are directly in the HTML. Clicking "Add task" appends a new <code>&lt;li&gt;</code> without using an array.</p>
+
+  <header>
+    <input id="new-task" type="text" placeholder="New task..." />
+    <button id="add-btn">Add task</button>
+  </header>
+
+  <ul id="todo-list">
+    <li>Task 1</li>
+    <li>Task 2</li>
+    <li>Task 3</li>
+  </ul>
+
+  <script>
+    const input = document.getElementById('new-task');
+    const button = document.getElementById('add-btn');
+    const list = document.getElementById('todo-list');
+
+    button.addEventListener('click', () => {
+      const text = input.value.trim();
+      if (!text) return;
+      const li = document.createElement('li');
+      li.textContent = text;
+      list.appendChild(li);
+      input.value = "";
+      input.focus();
+    });
+    input.addEventListener('keyup', (e) => {
+      if (e.key === 'Enter') button.click();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Calculator — Plain JS</title>
+  <style>
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; max-width: 720px; margin: 40px auto; padding: 0 16px; }
+    .row { display: grid; grid-template-columns: 120px 1fr; gap: 8px; align-items: center; margin-bottom: 10px; }
+    input[type=number] { padding: 8px; }
+    output { font-weight: 600; }
+  </style>
+</head>
+<body>
+  <h1>Calculator — Plain JS</h1>
+  <div class="row">
+    <label for="x">x</label>
+    <input id="x" type="number" value="0" />
+  </div>
+  <div class="row">
+    <label for="y">y</label>
+    <input id="y" type="number" value="0" />
+  </div>
+  <div class="row">
+    <label>result</label>
+    <output id="result">0</output>
+  </div>
+
+  <script>
+    const x = document.getElementById('x');
+    const y = document.getElementById('y');
+    const result = document.getElementById('result');
+
+    function update() {
+      const xv = Number(x.value || 0);
+      const yv = Number(y.value || 0);
+      result.textContent = xv + yv;
+    }
+
+    x.addEventListener('input', update);
+    y.addEventListener('input', update);
+    update();
+  </script>
+</body>
+</html>

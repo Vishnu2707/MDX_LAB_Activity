@@ -1,0 +1,43 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Calculator — Vue.js</title>
+  <style>
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; max-width: 720px; margin: 40px auto; padding: 0 16px; }
+    .row { display: grid; grid-template-columns: 120px 1fr; gap: 8px; align-items: center; margin-bottom: 10px; }
+    input[type=number] { padding: 8px; }
+    output { font-weight: 600; }
+  </style>
+</head>
+<body>
+  <h1>Calculator — Vue.js</h1>
+  <div id="app">
+    <div class="row">
+      <label for="x">x</label>
+      <input id="x" type="number" v-model.number="x" />
+    </div>
+    <div class="row">
+      <label for="y">y</label>
+      <input id="y" type="number" v-model.number="y" />
+    </div>
+    <div class="row">
+      <label>result</label>
+      <output>{{ sum }}</output>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/vue@2.7.8/dist/vue.js"></script>
+  <script>
+    new Vue({
+      el: '#app',
+      data: { x: 0, y: 0 },
+      computed: {
+        sum() { return Number(this.x || 0) + Number(this.y || 0); }
+      }
+    });
+  </script>
+</body>
+</html>
